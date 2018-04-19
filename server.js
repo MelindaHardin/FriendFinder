@@ -1,13 +1,21 @@
-var express = require("express"); //downloaded
-var bodyParser= require("body-parser"); //downloaded
-var path = require ("path");  //A core module...no need to instilation required
+var bodyParser = require('body-parser');
+var express = require('express');
+var path = require("path");
 
 var app = express();
+var PORT = process.env.PORT || 8080
 
-var PORT= 3000
+app.use(bodyParser.urlencoded({ extended: false }))
 
+// parse application/json
+app. use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json"}));
 
-app.listen(PORT, function(){ //listens on a port 
-    console.log("Server is listening on Port " + PORT)
-})
+require("./app/routing/apiRoutes.js")(app);
+require("./app/routing/htmlRoutes.js")(app);
 
+app.listen(PORT, function(){
+	console.log("App listening on PORT" + PORT);
+});
