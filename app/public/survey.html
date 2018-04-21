@@ -21,27 +21,16 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">Friend Finder</h1>
-        <p class="lead">Answer the 8 questions below based on a scale of 1-5.  Submit your answers to see your best match!</p>
+        <p class="lead">Answer the 10 questions below based on a scale of 1-5. Submit your answers to see your best match!</p>
       </div>
     </div>
 
-    <form>
-      <div class="form-row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="First name">
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Last name">
-        </div>
-      </div>
-      <br>
-
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="picture-link">Paste picture link</span>
-        </div>
-        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-      </div>
+    <form role="form">
+      <h5>Name</h5>
+      <input type="text" name="" id="name" class="form-control" required="" placeholder="Enter name here.">
+      <h5>Link to Photo</h5>
+      <input type="text" name="" id="image" class="form-control" required="" placeholder="Enter link here.">
+      <hr/>
 
 
       <form class="form-inline">
@@ -135,7 +124,7 @@
             </select>
             <br>
 
-          <label class="my-1 mr-2" for="q8">8) I am a night person.</label>
+            <label class="my-1 mr-2" for="q8">8) I am a night person.</label>
             <select class="custom-select my-1 mr-sm-2" id="q8">
               <option selected>Choose...</option>
               <option value="1">1 (Strongly Disagree)</option>
@@ -146,11 +135,42 @@
             </select>
             <br>
 
+            <label class="my-1 mr-2" for="q9">9) I like outdoor activities.</label>
+            <select class="custom-select my-1 mr-sm-2" id="q9">
+              <option selected>Choose...</option>
+              <option value="1">1 (Strongly Disagree)</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br>
+
+            <label class="my-1 mr-2" for="q10">10) I am close to my family.</label>
+            <select class="custom-select my-1 mr-sm-2" id="q10">
+              <option selected>Choose...</option>
+              <option value="1">1 (Strongly Disagree)</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br>
+            <br>
+
 
             <button class="btn btn-success btn-lg" id="submit">Submit</button>
 
           </form>
 
+  </div>
+  <!-- Large modal -->
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        Submit Button clicked
+      </div>
+    </div>
   </div>
 
 
@@ -164,9 +184,26 @@
     crossorigin="anonymous"></script>
 
   <script type="text/javascript">
-    $("#submit").on("click", function () {
-      alert("working");
-
+    $("#submit").on("click", function (event) {
+      event.preventDefault();
+      var newPerson = {
+        name: $("#name").val(),
+        photo: $("#pic").val(),
+        scores: [
+          $("#q1").val().trim(),
+          $("#q2").val().trim(),
+          $("#q3").val().trim(),
+          $("#q4").val().trim(),
+          $("#q5").val().trim(),
+          $("#q6").val().trim(),
+          $("#q7").val().trim(),
+          $("#q8").val().trim(),
+          $("#q9").val().trim(),
+          $("#q10").val().trim()
+        ]
+      };
+      var currentURL = window.location.origin;
+      console.log(newPerson);
 
     })
 
