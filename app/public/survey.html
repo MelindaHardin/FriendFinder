@@ -187,8 +187,8 @@
     $("#submit").on("click", function (event) {
       event.preventDefault();
       var newPerson = {
-        name: $("#name").val(),
-        photo: $("#pic").val(),
+        name: $("#name").val().trim(),
+        photo: $("#image").val().trim(),
         scores: [
           $("#q1").val().trim(),
           $("#q2").val().trim(),
