@@ -1,44 +1,31 @@
-//should contain two routes:
+//should contain 2 routes:
 var path = require("path");
-var friends = require("../data/friends.js")
+var friendsData = require("../data/friends.js");
 
 
+//   1 GET route with the url /api/friends. This will be used to display a JSON of all possible friends.
 module.exports = function (app) {
     app.get("/api/friends", function (req, res) {
-        res.json(friends);
+
+        res.json(friendsData);
 
     });
-
+// ***  NEED HELP ***   2 POST routes /api/friends. This will be used to handle incoming survey results. This route will also be used to handle the compatibility logic.
     app.post("/api/friends", function (req, res) {
+        var surveyResults = req.body;
+        var surverScore=req.body.scores;
+        var totalDifference=0;
 
-        {
-            var newFriend = req.body;
-            var compatibleFriend; //will store most compatible score
-            var bestFriendScore; //stores the lowest friend score.
-            friends.friends.forEach(function (currentFriend) {
-                var friendScore = 0;
-                for (i = 0; i < newFriend.scores.length; i++) //loops through all the scores of a friendd.
-                {
-                    friendScore += Math.abs(newFriend.scores[i] - currentFriend.scores[i]); //adds the absolute value of new friedscore - currently compared to friend's score.
-                }
-                if (compatibleFriend === undefined) //if there is no compatible friend assigned, the current friend is assigned and that friends score is the bestScore
-                {
-                    compatibleFriend = currentFriend;
-                    bestFriendScore = friendScroe;
-                }
-                else {
-                    if (friendScore < bestFriendScore) {
-                        compatibleFriend = currentFriend;
-                        bestFriendScore = friendScore;
-                    }
-                }
-            });
+        console.log(req.body);
+        //friendsData.push(surveyResults);    
+        //res.json(matchFriend(friendsData))
 
-            friends.friends.pus(req.body);
-            res.json(compatibleFriend);
-
-
-        }
     });
+
 }
 
+
+
+//function matchFriend(friendsData) {
+    
+//}
